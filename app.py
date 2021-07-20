@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
 # config import
 from config import app_config, app_active
@@ -13,6 +14,9 @@ def create_app(config_name):
   app.secret_key = config.SECRET
   app.config.from_object(app_config[config_name])
   app.config.from_pyfile('config.py')
+  app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI #recebe a conexao
+  db = SQLAlchemy(app) #instancia de db
+  db.init(app) #inicia db
 
   @app.route('/')
   def index():
