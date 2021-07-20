@@ -15,8 +15,9 @@ def create_app(config_name):
   app.config.from_object(app_config[config_name])
   app.config.from_pyfile('config.py')
   app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI #recebe a conexao
-  db = SQLAlchemy(app) #instancia de db
-  db.init(app) #inicia db
+  app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+  db = SQLAlchemy(config.APP) #instancia de db
+  db.init_app(app) #inicia db
 
   @app.route('/')
   def index():
