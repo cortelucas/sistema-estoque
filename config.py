@@ -16,6 +16,7 @@ class DevelopmentConfig(Config):
   IP_HOST = 'localhost'
   PORT_HOST = 8000
   URL_MAIN = 'http://%s:%s/' % (IP_HOST, PORT_HOST)
+  SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://lucas@localhost:3306/sistema-estoque'
 
 
 class TestingConfig(Config):
